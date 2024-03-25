@@ -26,19 +26,12 @@ fun MovieApp(
     val movies by viewModel.movies.collectAsState()
     val selectedMovie = remember { mutableStateOf<Movie?>(null) }
     val isLoading = remember { mutableStateOf(false) }
-    val isLastViewed = remember { mutableStateOf(false) }
-    val lastViewedMovieData = remember {
-        mutableStateOf(
-            viewModel.getLastViewedMovieInfo()
-        )
-    }
+    val lastViewedMovieData by viewModel.lastViewedMovie.collectAsState()
 
     Column(verticalArrangement = Arrangement.Center) {
 
         FilterBar(filterText = searchText, onFilterTextChange = onSearchTextChanged)
-        if (isLastViewed.value && selectedMovie.value == null) {
-            Text(text = "Last Viewed")
-        }
+
         if (selectedMovie.value != null) {
             MovieDetails(selectedMovie.value!!) { selectedMovie.value = null }
         } else if (isLoading.value) {
@@ -56,17 +49,14 @@ fun MovieApp(
                 selectedMovie.value = movie
                 viewModel.saveLastViewedMovieInfo(movie)
             }
-        }
-    }
 
-    LaunchedEffect(Unit) {
-        isLoading.value = true
-        if (movies.isEmpty() && lastViewedMovieData.value != null) {
-            viewModel.saveLastViewedMovieInfo(lastViewedMovieData.value!!)
-            isLastViewed.value = true
+            if (movies.isEmpty()) {
+                MovieList(lastViewedMovieData) { movie ->
+                    selectedMovie.value = movie
+                    viewModel.saveLastViewedMovieInfo(movie)
+                }
+            }
         }
-
-        isLoading.value = false
     }
 
     LaunchedEffect(selectedMovie.value) {

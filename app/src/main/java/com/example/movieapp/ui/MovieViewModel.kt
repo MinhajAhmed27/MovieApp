@@ -18,8 +18,12 @@ class MovieViewModel @Inject constructor(
     private val _movies: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
     val movies: StateFlow<List<Movie>> get() = _movies
 
+    private val _lastViewedMovie: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
+    val lastViewedMovie: StateFlow<List<Movie>> get() = _lastViewedMovie
+
     init {
         fetchMovies()
+        fetchLastViewedMovie()
     }
 
     private fun fetchMovies() {
@@ -33,11 +37,15 @@ class MovieViewModel @Inject constructor(
         }
     }
 
+    private fun fetchLastViewedMovie() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val lastViewedMovie = movieRepository.getLastViewedMovieInfo()
+            _lastViewedMovie.emit(listOf(lastViewedMovie))
+        }
+    }
+
     fun saveLastViewedMovieInfo(movie: Movie) {
         movieRepository.saveLastViewedMovieInfo(movie)
     }
 
-    fun getLastViewedMovieInfo():Movie? {
-        return movieRepository.getLastViewedMovieInfo()
-    }
 }

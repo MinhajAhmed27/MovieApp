@@ -1,6 +1,5 @@
 package com.example.movieapp
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +10,6 @@ import com.example.movieapp.ui.theme.MovieAppTheme
 import com.example.movieapp.ui.MovieApp
 import com.example.movieapp.ui.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

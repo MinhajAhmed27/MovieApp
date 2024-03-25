@@ -11,7 +11,7 @@ fun MovieList(movies: List<Movie>, onItemClick: (Movie) -> Unit) {
 
     if (movies.isEmpty()) {
         // Show a message indicating no movies found (optional)
-        Text("No Movies Found")
+        Text("Last Viewed")
     } else {
         LazyColumn {
             items(movies, key = { it.id }) { movie ->

@@ -30,7 +30,7 @@ class MovieRepository @Inject constructor(
         sharedPreferences.edit().putString("lastViewedMovieData", movieDataJson).apply()
     }
 
-    fun getLastViewedMovieInfo(): Movie? {
+    fun getLastViewedMovieInfo(): Movie {
         val movieDataJson = sharedPreferences.getString("lastViewedMovieData", null)
         val gson = Gson()
         return gson.fromJson(movieDataJson, Movie::class.java)
