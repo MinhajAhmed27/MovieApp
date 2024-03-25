@@ -1,5 +1,6 @@
 package com.example.movieapp.api
 
+import com.example.movieapp.data.Movie
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -11,14 +12,4 @@ interface TmdbApiService {
         @Query("api_key") apiKey: String
     ): ApiResponse<List<Movie>>
 
-    companion object {
-        fun create(): TmdbApiService {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            return retrofit.create(TmdbApiService::class.java)
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.movieapp.api
+package com.example.movieapp.data
 
 import androidx.compose.runtime.Immutable
 

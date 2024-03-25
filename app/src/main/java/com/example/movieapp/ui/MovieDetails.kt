@@ -1,4 +1,4 @@
-package com.example.movieapp.views
+package com.example.movieapp.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.movieapp.R
-import com.example.movieapp.api.Movie
+import com.example.movieapp.data.Movie
 
 @Composable
 fun MovieDetails(movie: Movie, onCloseClick: () -> Unit) {

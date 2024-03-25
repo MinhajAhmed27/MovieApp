@@ -1,4 +1,4 @@
-package com.example.movieapp.views
+package com.example.movieapp.ui
 
 
 import androidx.compose.foundation.layout.fillMaxWidth

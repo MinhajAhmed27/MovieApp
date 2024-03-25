@@ -1,4 +1,4 @@
-package com.example.movieapp
+package com.example.movieapp.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,7 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.movieapp.api.Movie
+import com.example.movieapp.R
+import com.example.movieapp.data.Movie
 
 @Composable
 fun MovieListItem(movie: Movie, onItemClick: () -> Unit) {
